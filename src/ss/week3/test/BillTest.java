@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import ss.week3.bill.Bill;
 import ss.week3.bill.StringPrinter;
 
-class BillTest {
+public class BillTest {
     private Bill bill;
     private Item item;
 
@@ -42,7 +42,7 @@ class BillTest {
     }
 
     @Test
-    void addItem() {
+    void testAddItem() {
         assertEquals(item.getAmount(), 11); // item basic state
         bill.addItem(item);
         assertEquals(bill.getSum(), 11);
@@ -53,14 +53,13 @@ class BillTest {
     }
 
     @Test
-    void close() {
-        //TODO: finish this test
-        // the test class in general
-        //assertEquals(Printer.get);
+    void testClose() {
+        bill.addItem(item);
+        assertEquals("Total sum: 11.0", "Total sum: " + bill.getSum() );
     }
 
     @Test
-    void getSum() {
+    void testGetSum() {
         assertEquals(bill.getSum(), 0); // basic state
         bill.addItem(item);
         assertEquals(bill.getSum(), 11);
