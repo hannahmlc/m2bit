@@ -6,12 +6,11 @@ import ss.week3.password.Password;
 public class PricedSafe extends Safe implements Bill.Item{
 
     private Password password;
-    private Safe Safe;
     public double price;
 
-    public PricedSafe(double price){
-        this.price = price;
-        this.password = new Password();
+    public PricedSafe(double Price){
+        price = Price;
+        password = new Password();
     }
 
     /**
@@ -19,8 +18,8 @@ public class PricedSafe extends Safe implements Bill.Item{
      * @param Password - provided password
      */
     public void activate(String Password){
-        if(password.testWord(Password)){
-            Safe.activate();
+        if (password.getFactoryPassword().equals(Password)) {
+            super.activate();
         }
     }
 
@@ -38,8 +37,8 @@ public class PricedSafe extends Safe implements Bill.Item{
      * and deactivates it
      */
     public void deactivate(){
-        Safe.close();
-        Safe.deactivate();
+        super.close();
+        super.deactivate();
 
     }
 
@@ -48,8 +47,8 @@ public class PricedSafe extends Safe implements Bill.Item{
      * @param Password - given password
      */
     public void open(String Password){
-        if (Safe.isActive() && password.testWord(Password)){
-            Safe.open();
+        if (isActive() && password.getFactoryPassword().equals(Password)){
+            super.open();
         }
     }
 
@@ -66,7 +65,7 @@ public class PricedSafe extends Safe implements Bill.Item{
      * does not change its activation status
      */
     public void close(){
-        Safe.close();
+        super.close();
     }
 
     /**
@@ -83,6 +82,11 @@ public class PricedSafe extends Safe implements Bill.Item{
      */
     @Override
     public double getAmount() {
-        return price;
+        return this.price;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Safe's price: %.2f", this.getAmount());
     }
 }

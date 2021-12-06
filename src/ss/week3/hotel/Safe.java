@@ -11,7 +11,7 @@ public class Safe {
 
     //activates the safe
     public void activate(){
-        activated = true;
+        this.activated = true;
     }
 
     // closes and deactivates safe
