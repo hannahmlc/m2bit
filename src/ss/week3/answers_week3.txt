@@ -4,12 +4,14 @@
  /_/ \_\_|\_|___/ \_/\_/ |___|_|_\|___/    \_/\_/ |___|___|_|\_\  |___/
 
 Your name(s):
--
+- Hanna Hamielec
 -
 
 Please submit your textual answers to the following questions in this file:
 - P-3.1
 
+
+3.13
 
 
 - P-3.14

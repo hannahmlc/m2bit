@@ -8,6 +8,12 @@ public class PricedSafe extends Safe implements Bill.Item{
     private Password password;
     public double price;
 
+
+    //public static void main(String[] args) {
+       // PricedSafe pricedsafe = new PricedSafe("");
+    //}
+
+
     public PricedSafe(double Price){
         price = Price;
         password = new Password();

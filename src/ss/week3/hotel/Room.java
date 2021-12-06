@@ -21,8 +21,9 @@ public class Room {
     /**
      * creates a safe for the Room with given number
      * @param number number of the Room
+     * @param pricedSafe
      */
-    public Room(int number){
+    public Room(int number, PricedSafe pricedSafe){
         this(number, new ss.week2.hotel.Safe());
     }
 
