@@ -1,0 +1,38 @@
+    _   _  _ _____      _____ ___  ___  __      _____ ___ _  __  ___
+   /_\ | \| / __\ \    / / __| _ \/ __| \ \    / / __| __| |/ / |_  )
+  / _ \| .` \__ \\ \/\/ /| _||   /\__ \  \ \/\/ /| _|| _|| ' <   / /
+ /_/ \_\_|\_|___/ \_/\_/ |___|_|_\|___/   \_/\_/ |___|___|_|\_\ /___|
+
+Your name(s):
+- Hanna Hamielec
+- Nell Zegers
+
+Please submit your textual answers to the following questions in this file:
+- P-2.2
+
+Get state (state is a current state of lamp)
+Set state to new_state Where new_state = input
+Set state where new_state = next_state
+
+
+- P-2.9
+1. In which package is the String class contained?
+java.lang.String
+
+2. How many constructors does this class have? How do they differ?
+13, they differ based on how the string can be build with them ( from bytes, chars or strings)
+
+3. Several methods can be used to construct new String instances, which are often called factory
+methods because they ’produce’ objects. How many methods are available that build String instances?
+two methods:
+creating new String, using valueOf()
+
+- P-2.11
+tested methodes are not yet fully implemented
+
+- P-2.13
+
+Javadoc documentation includes all methods, constructors, fields and classes with their attributes,all comments, preconditions,
+preconditions, invariants
+Javadoc is useful to present and describe code, making it easier to use and understand,
+documentation javadoc provides makes the code easier to work with for other people who for example works on teh same project
