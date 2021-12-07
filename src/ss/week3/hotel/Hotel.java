@@ -4,17 +4,15 @@ import ss.week3.bill.Bill;
 import ss.week3.bill.Printer;
 
 public class Hotel {
+    private Guest guest;
     public static int ROOM_PRICE =11;
     public static int SAFE_PRICE =11;
-    private Guest guest;
-    private PricedRoom room101;
-    private Room room102;
+    private PricedRoom room101=new PricedRoom(101, ROOM_PRICE, SAFE_PRICE);
+    private Room room102 =new Room(102);
     private String hotelName;
 
     public Hotel(String hname) {
         this.hotelName = hname;
-        room101 = new PricedRoom(101, ROOM_PRICE, SAFE_PRICE);
-        room102 = new Room(102);
     }
 
     /**
@@ -56,21 +54,17 @@ public class Hotel {
      *
      * @return room that is free or null
      */
-    public Room getFreeRoom() {
-        if (room101.getGuest() == null) {
+    public Room getFreeRoom(){
+        if (room101.getGuest() == null){
             return room101;
-        } else if (room102.getGuest() == null) {
+        } else if (room102.getGuest() == null){
             return room102;
         } else return null;
-
     }
-
-    //• A query getRoom that
 
     /**
      * upon receiving guest name, returns the Room  into which the guest is checked in
      * if the guest cannot be found in any room returns null
-     *
      * @param name guest name
      * @return room occupied by guest
      */

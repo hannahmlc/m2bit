@@ -5,13 +5,13 @@ public class Room {
     private Guest Guest;
     private Room room;
     private Safe safe;
-    
+
     /**
-    * Creates a <code>Room</code> with the given number, without a guest.
-    * @param number number of the new <code>Room</code>
-    */
+     * Creates a <code>Room</code> with the given number, without a guest.
+     * @param number number of the new <code>Room</code>
+     */
     public Room(int number, Safe safe) {
-    	this.number = number;
+        this.number = number;
         this.safe = safe;
     }
 
@@ -27,7 +27,7 @@ public class Room {
      * Returns the number of this Room
      */
     public int getNumber() {
-    	return number;
+        return number;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Room {
      * @return the guest of this Room, null if not rented
      */
     public Guest getGuest() {
-    	return Guest;
+        return Guest;
     }
 
 
@@ -56,5 +56,5 @@ public class Room {
     public String toString() {
         return "Room " + getNumber();
     }
-    
+
 }

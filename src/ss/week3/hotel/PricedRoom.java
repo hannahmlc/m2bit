@@ -1,8 +1,7 @@
 package ss.week3.hotel;
-
 import ss.week3.bill.Bill;
 
-public class PricedRoom extends Room implements Bill.Item{
+public class PricedRoom extends ss.week3.hotel.Room implements Bill.Item{
 
 private double pricePerNigth;
 
