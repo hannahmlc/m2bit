@@ -112,7 +112,6 @@ public class HotelTest {
     public void testGetFreeRoomFromFullHotel() {
         hotel.checkIn(GUEST_NAME_1);
         hotel.checkIn(GUEST_NAME_2);
-
         Room noRoom = hotel.getFreeRoom();
         assertNull(noRoom, "No room available in a full hotel");
     }

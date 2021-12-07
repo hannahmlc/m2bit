@@ -1,10 +1,11 @@
-package ss.week4.kjdfab;
+package ss.week4.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ss.week4.LinkedList;
 
 
 public class LinkedListTest {

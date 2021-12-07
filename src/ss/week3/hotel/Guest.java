@@ -27,7 +27,7 @@ public class Guest {
      * @return Room rented by this Guest; null if this Guest does not rent a room
      */
     public Room getRoom() {
-        return Room_;
+        return this.Room_;
     }
 
     /**
@@ -39,8 +39,8 @@ public class Guest {
      */
     public boolean checkin(Room room) {
         if (room.getGuest() == null) {
-            Room_ = room;
-            room.setGuest(this);
+            room.setGuest(this) ;
+            this.Room_ = room;
             return true;
         } else {
             return false;

@@ -1,4 +1,4 @@
-package ss.week4.kjdfab;
+package ss.week4;
 
 public class LinkedList<Element> {
 
@@ -36,6 +36,8 @@ public class LinkedList<Element> {
 
     public Node findBefore(Element element) {
     // TODO: implement, see exercise P-4.5
+        Node p = new Node(element);
+        return p;
 
     }
 

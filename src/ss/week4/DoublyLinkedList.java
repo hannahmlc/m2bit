@@ -3,7 +3,7 @@ package ss.week4;
 public class DoublyLinkedList<Element> {
 
     private int size;
-    private Node head;
+    private Node head; //first node
 
     /**
      * @ensures the list is empty (size is 0)
@@ -25,7 +25,26 @@ public class DoublyLinkedList<Element> {
      * @param element The element to add
      */
     public void add(int index, Element element) {
-        // TODO: implement, see exercise P-4.4
+
+        Node newNode = new Node(element);
+
+        if (head == null) {	// list is empty
+            head.previous = newNode;
+            head.next = newNode;
+
+            head = newNode;
+           // head.previous = newNode;
+            //head.next = newNode;
+        } else if (index == 0){ //insert at the beginning
+            //head = newNode;
+            newNode.next = head;
+            head = newNode;
+        } else{
+            Node n = getNode(index - 1); //get node before place want to insert
+            newNode.next = n.next;
+            n.next = newNode;
+        }
+        this.size++;
     }
 
     /**

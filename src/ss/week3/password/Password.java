@@ -2,9 +2,6 @@ package ss.week3.password;
 
 public class Password {
 
-
-
-
     private String password;
     private Checker checker;
     private String INITIAL ="";

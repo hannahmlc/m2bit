@@ -19,7 +19,6 @@ public class Room {
      * @param number number of the Room
      */
     public Room(int number){
-
         this(number, new Safe());
     }
 
