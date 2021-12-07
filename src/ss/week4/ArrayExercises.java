@@ -2,12 +2,20 @@ package ss.week4;
 
 public class ArrayExercises {
     public static int countNegativeNumbers(int[] arr) {
-        // TODO: implement, see exercise P-4.1
-        return 0;
+        int count = 0; //number of ngative vslues in arrary
+        for( int i =0; i<arr.length; i++){
+            if (arr[i] <0) count++;
+        }
+        return count;
     }
 
     public static void reverseArray(int[] ints) {
-        // TODO: implement, see exercise P-4.1
+        int[] copy = ints.clone();
+        int j = 0;
+        for (int i = ints.length-1; i>=0;i--){
+            ints[j] = copy[i];
+                j++;
+        }
     }
 
     class SimpleList {

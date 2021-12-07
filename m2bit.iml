@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/src/ss/week3/testDisturb" />
       <excludeFolder url="file://$MODULE_DIR$/src/ss/week3/test/testdisturb" />
+      <excludeFolder url="file://$MODULE_DIR$/src/ss/week4/kjdfab" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
