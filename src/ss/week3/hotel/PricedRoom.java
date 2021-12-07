@@ -12,7 +12,6 @@ private double pricePerNigth;
         pricePerNigth = roomPrice;
     }
 
-
     /**
      * @return amount of this Item
      * @ensures: result >=0;
@@ -26,4 +25,5 @@ private double pricePerNigth;
     public String toString(){
         return "Rooom" + getNumber() + " " + getAmount();
     }
+
 }

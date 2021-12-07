@@ -1,6 +1,7 @@
 package ss.week3.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,14 +11,16 @@ import ss.week3.bill.StringPrinter;
 public class BillTest {
     private Bill bill;
     private Item item;
+    private Item item2;
+    private  StringPrinter printer;
 
-    private class Item implements Bill.Item{
+    class Item implements Bill.Item{
         double amount;
         String text;
 
         public Item(String Text, double Amount){
-            text = Text;
-            amount = Amount;
+            this.text = Text;
+            this.amount = Amount;
         }
 
         /**
@@ -31,14 +34,16 @@ public class BillTest {
 
         @Override
         public String toString(){
-            return text;
+            return this.text;
         }
     }
 
     @BeforeEach
     void setUp() {
-        bill = new Bill(new StringPrinter());
+        printer = new StringPrinter();
+        bill = new Bill(printer);
         item = new Item("Apple", 11);
+        item2 = new Item("Orange",11);
     }
 
     @Test
@@ -46,7 +51,6 @@ public class BillTest {
         assertEquals(item.getAmount(), 11); // item basic state
         bill.addItem(item);
         assertEquals(bill.getSum(), 11);
-        Item item2 = new Item("orange", 11);
         bill.addItem(item2);
         assertEquals(bill.getSum(), 22);
 
@@ -63,5 +67,18 @@ public class BillTest {
         assertEquals(bill.getSum(), 0); // basic state
         bill.addItem(item);
         assertEquals(bill.getSum(), 11);
+    }
+
+    @Test
+    public void testNewItem() {
+        bill.addItem(item);
+        assertEquals("Apple",item.text);
+        assertEquals(11,bill.getSum());
+        assertTrue(printer.getResult().contains(String.valueOf(item.amount)));
+        bill.addItem(item2);
+        assertTrue(printer.getResult().contains(item.toString()));
+        assertTrue(printer.getResult().contains(item2.toString()));
+        assertEquals(bill.getSum(), item.amount+item2.amount);
+
     }
 }

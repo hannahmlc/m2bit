@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ss.week3.bill.Bill;
@@ -51,19 +52,19 @@ public class PricedSafeTest {
     //Assert that a deactivated safe can be activated with the correct password and is activated and closed after that;
     @Test
     public void testActivate(){
-        assertFalse(safe.isActive());//test initial state
-        assertFalse(safe.isOpen()); //test initial state
+        assertEquals(false,safe.isActive());//test initial state
+        assertEquals(false,safe.isOpen()); //test initial state
         safe.activate(CORRECT_PASSWORD);
-        assertTrue(safe.isActive());
-        assertFalse(safe.isOpen());
+        assertEquals(true,safe.isActive());
+        assertEquals(false,safe.isOpen());
     }
 
     //Assert that a deactivated safe cannot be activated with an incorrect password (remains deactivated and closed);
     @Test
     public void testActivate2(){
         safe.activate(WRONG_PASSWORD);
-        assertFalse(safe.isActive());
-        assertFalse(safe.isOpen());
+        assertEquals(false,safe.isActive());
+        assertEquals(false,safe.isOpen());
     }
 
     // Test if after trying to open a deactivated safe with the correct password the safe is indeed deactivated and closed;
@@ -84,12 +85,12 @@ public class PricedSafeTest {
    @Test
    public void testOpen(){
         safe.activate(CORRECT_PASSWORD);
-        assertTrue(safe.isActive());
+        assertEquals(true, safe.isActive());
         safe.open(WRONG_PASSWORD);
-        assertFalse(safe.isOpen());
+        assertEquals(false,safe.isOpen());
         safe.open(CORRECT_PASSWORD);
-        assertTrue(safe.isActive());
-        assertTrue(safe.isOpen());
+        assertEquals(true,safe.isActive());
+        assertEquals(true,safe.isOpen());
     }
 
     // Test if after activating and opening a safe with the correct password, and closing it, the safe is closed and activated;
@@ -98,16 +99,16 @@ public class PricedSafeTest {
         safe.activate(CORRECT_PASSWORD);
         safe.open(CORRECT_PASSWORD);
         safe.close();
-        assertTrue(safe.isActive());
-        assertFalse(safe.isOpen());
+        assertEquals(true,safe.isActive());
+        assertEquals(false,safe.isOpen());
     }
 
     //Test if after closing a deactivated safe, it is closed and deactivated
     @Test
     public void testClose2(){
-        assertFalse(safe.isActive());
+        assertEquals(false, safe.isActive());
         safe.close();
-        assertFalse(safe.isActive());
-        assertFalse(safe.isOpen());
+        assertEquals(false, safe.isActive());
+        assertEquals(false,safe.isOpen());
     }
 }

@@ -3,21 +3,25 @@ package ss.week3.password;
 public class Password {
 
 
-    public static final String INITIAL = "inital";
+
 
     private String password;
     private Checker checker;
+    private String INITIAL ="";
     public String factoryPassword;
 
 
-    public Password (Checker checker) {
-        password = INITIAL;
-        this.checker = checker;
-        factoryPassword = checker.generatePassword();
+    public Password (Checker Checker) {
+        this.checker = Checker;
+        INITIAL = checker.generatePassword();
+        factoryPassword = INITIAL;
+
+        //factoryPassword = checker.generatePassword();
     }
 
     public Password() {
         this(new BasicChecker());
+        this.password = checker.generatePassword();
     }
 
     /**
@@ -40,7 +44,6 @@ public class Password {
     public boolean testWord(String test){
         return (test.equals(password));
     }
-
 
     /**
      * Changes this password.

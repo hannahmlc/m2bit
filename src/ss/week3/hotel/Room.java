@@ -1,37 +1,33 @@
 package ss.week3.hotel;
 
-import ss.week2.hotel.Guest;
-import ss.week2.hotel.Safe;
-
 public class Room {
     private int number;
-    private ss.week2.hotel.Guest Guest;
-    private ss.week2.hotel.Room room;
-    private ss.week2.hotel.Safe safe;
+    private Guest Guest;
+    private Safe safe;
 
     /**
-     * Creates a <code>Room</code> with the given number, without a guest.
-     * @param number number of the new <code>Room</code>
-     */
-    public Room(int number, ss.week2.hotel.Safe safe) {
-        this.number = number;
+    * Creates a <code>Room</code> with the given number, without a guest.
+    * @param number number of the new <code>Room</code>
+    */
+    public Room(int number, Safe safe) {
+    	this.number = number;
         this.safe = safe;
     }
 
     /**
      * creates a safe for the Room with given number
      * @param number number of the Room
-     * @param pricedSafe
      */
-    public Room(int number, PricedSafe pricedSafe){
-        this(number, new ss.week2.hotel.Safe());
+    public Room(int number){
+
+        this(number, new Safe());
     }
 
     /**
      * Returns the number of this Room
      */
     public int getNumber() {
-        return number;
+    	return number;
     }
 
     /**
@@ -39,7 +35,7 @@ public class Room {
      * @return the guest of this Room, null if not rented
      */
     public Guest getGuest() {
-        return Guest;
+    	return this.Guest;
     }
 
 
@@ -50,7 +46,6 @@ public class Room {
      * @param guest the new guest renting this Room, if null is given, Room is empty afterwards
      */
     public void setGuest(Guest guest) {
-
         this.Guest = guest;
     }
 
@@ -60,4 +55,5 @@ public class Room {
     public String toString() {
         return "Room " + getNumber();
     }
+
 }

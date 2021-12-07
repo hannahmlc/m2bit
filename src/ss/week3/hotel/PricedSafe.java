@@ -7,11 +7,12 @@ public class PricedSafe extends Safe implements Bill.Item{
 
     private Password password;
     public double price;
+    private Safe safe;
 
-
-    //public static void main(String[] args) {
-       // PricedSafe pricedsafe = new PricedSafe("");
-    //}
+    /*
+    public static void main(String[] args) {
+    PricedSafe pricedsafe = new PricedSafe("");
+    }*/
 
 
     public PricedSafe(double Price){
@@ -24,7 +25,7 @@ public class PricedSafe extends Safe implements Bill.Item{
      * @param Password - provided password
      */
     public void activate(String Password){
-        if (password.getFactoryPassword().equals(Password)) {
+        if (getPassword().testWord(Password)) {
             super.activate();
         }
     }

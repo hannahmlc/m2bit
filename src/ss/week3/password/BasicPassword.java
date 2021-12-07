@@ -49,7 +49,7 @@ public class BasicPassword {
         boolean newCheck = acceptable(newPass); // Check if the new password is acceptable;
          //if checks are correct update the password.
         if (oldCheck && newCheck){
-            password = newPass;
+            this.password = newPass;
             return true;
         } else {
             return false;

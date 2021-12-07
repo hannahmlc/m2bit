@@ -9,11 +9,27 @@ Your name(s):
 
 Please submit your textual answers to the following questions in this file:
 - P-3.1
+- empty String cold resolve into error like NullPointerException
+-it's public so that it can be used outside the main class
 
+- P-3.13
+• Which packages and classes have been covered the least/ the most?
+package covered the least was package ss.week3.password while the ones covered the most was ss.week3.test
+classes covered the least were all the classes containing only interfaces
 
-3.13
+• Why are some classes covered to 0%? Is this a problem?
+in this case it isn't, because since those classes contain only interfaces
+their actuall implementations is actually covered in another class
 
+• Can you improve your test class to increase the coverage?
+in the case of this code i don't think there any other use cases that are not covered by test classes
 
 - P-3.14
-- P-3.15
+"java: incompatible types" error appears, assertions are useful to avoid thing like this happening and to check
+that something that shouldn't occur (like compilation error) won't happen
+
+
+
+
+
 

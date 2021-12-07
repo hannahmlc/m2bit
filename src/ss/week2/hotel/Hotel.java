@@ -58,7 +58,6 @@ public class Hotel {
 
     }
 
-    //• A query getRoom that
 
     /**
      * upon receiving guest name, returns the Room  into which the guest is checked in
