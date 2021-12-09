@@ -31,14 +31,27 @@ public class LinkedList<Element> {
      * @param element the Element to remove
      */
     public void remove(Element element) {
-    // TODO: implement, see exercise P-4.5
+        if(first.getElement().equals(element)){
+            first = first.next;
+        } else {
+            Node before = findBefore(element);
+            before.next = before.next.next;
+        }
+
+        size--;
     }
 
     public Node findBefore(Element element) {
-    // TODO: implement, see exercise P-4.5
-        Node p = new Node(element);
-        return p;
+        Node result = first;
 
+        if (size > 0){
+            while (result.next != null && !result.next.getElement().equals(element)){ //end of list or next element is what we look for
+            result = result.next;
+            }
+            if(result.next == null) { //element not found in list
+                return null;
+            } return result;
+        }else return null;
     }
 
     /**
