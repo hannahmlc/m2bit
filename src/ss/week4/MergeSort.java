@@ -17,6 +17,7 @@ public class MergeSort {
         }
     }
 
+    //merge two arrays together
     public static <E extends Comparable<E>> void merge(List<E> fst, List<E> snd, List<E> list) {
         int fs = fst.size();
         int s2 = snd.size();
@@ -27,8 +28,7 @@ public class MergeSort {
             if (fst.get(i).compareTo(snd.get(j)) < 0) {
                 list.set(k, fst.get(i));
                 i++;
-            }
-            else {
+            } else {
                 list.set(k, snd.get(j));
                 j++;
             }
@@ -37,8 +37,7 @@ public class MergeSort {
         if (i == fs)
             for (int p = j; p < s2; p++) {
                 list.set(k, snd.get(p)); k++;
-            }
-        else if (j == s2)
+            } else if (j == s2)
             for (int p = i; p < fs; p++) {
                 list.set(k, fst.get(p)); k++;
             }
@@ -47,8 +46,10 @@ public class MergeSort {
     private static <E extends Comparable<E>> List<E> copyPartialArray(List<E> A, int first, int last) {
         int n = last - first;
         List<E> copy = new ArrayList<E>(n);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++){
             copy.add(i, A.get(first + i));
+        }
         return copy;
     }
+
 }

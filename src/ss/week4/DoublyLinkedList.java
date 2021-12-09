@@ -25,26 +25,15 @@ public class DoublyLinkedList<Element> {
      * @param element The element to add
      */
     public void add(int index, Element element) {
-
         Node newNode = new Node(element);
+        Node currentNode = getNode(index);
 
-        if (head == null) {	// list is empty
-            head.previous = newNode;
-            head.next = newNode;
+        newNode.next = currentNode;
+        newNode.previous = currentNode.previous;
+        newNode.next.previous = newNode; // not current.previous, be sure to access it through new node
+        newNode.previous.next = newNode;
 
-            head = newNode;
-           // head.previous = newNode;
-            //head.next = newNode;
-        } else if (index == 0){ //insert at the beginning
-            //head = newNode;
-            newNode.next = head;
-            head = newNode;
-        } else{
-            Node n = getNode(index - 1); //get node before place want to insert
-            newNode.next = n.next;
-            n.next = newNode;
-        }
-        this.size++;
+        size++;
     }
 
     /**
@@ -54,7 +43,12 @@ public class DoublyLinkedList<Element> {
      * @param index the index to remove the element at 
      */
     public void remove(int index) {
-        // TODO: implement, see exercise P-4.4
+        Node currentNode = getNode(index);
+
+        currentNode.previous.next = currentNode.next;
+        currentNode.next.previous = currentNode.previous;
+
+        size --;
     }
 
     /**
@@ -83,6 +77,7 @@ public class DoublyLinkedList<Element> {
     public int size() {
         return this.size;
     }
+
     public class Node {
         public Node(Element element) {
             this.element = element;
