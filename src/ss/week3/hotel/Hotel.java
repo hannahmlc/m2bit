@@ -7,9 +7,10 @@ public class Hotel {
     private Guest guest;
     public static int ROOM_PRICE =11;
     public static int SAFE_PRICE =11;
-    private PricedRoom room101=new PricedRoom(101, ROOM_PRICE, SAFE_PRICE);
-    private Room room102 =new Room(102);
+    private PricedRoom room101 = new PricedRoom(101, ROOM_PRICE, SAFE_PRICE);
+    private Room room102 = new Room(102);
     private String hotelName;
+    private Bill bill;
 
     public Hotel(String hname) {
         this.hotelName = hname;
@@ -22,14 +23,14 @@ public class Hotel {
      * @return Room with a (new) Guest of the given name checked in, or null in case there is already a guest with this name or the hotel is full.
      */
     public Room checkIn(String name){
-        Room room = getFreeRoom();
         guest = new Guest(name);
-        if (guest.getRoom() == null && room!=null){
+        Room room = null;
+        room = getFreeRoom();
+        if (guest.getRoom() == null && room!=null && room.getGuest()==null){
             guest.checkin(getFreeRoom());
         }
         return room;
     }
-
 
     /**
      * upon receiving guest name, the guest is checked out,
@@ -48,7 +49,6 @@ public class Hotel {
         }
     }
 
-
     /**
      * returns the Room into which the guest can check in, otherwise returns null
      *
@@ -57,9 +57,10 @@ public class Hotel {
     public Room getFreeRoom(){
         if (room101.getGuest() == null){
             return room101;
-        } else if (room102.getGuest() == null){
+        } else if ( room102.getGuest() == null){
             return room102;
-        } else return null;
+        } return null;
+
     }
 
     /**
@@ -69,11 +70,11 @@ public class Hotel {
      * @return room occupied by guest
      */
     public Room getRoom(String name) {
-        if (guest != null && (room101.getGuest() != null || room102.getGuest() != null)) {
-            return guest.getRoom();
-        } else {
-            return null;
-        }
+        if (room101.getGuest() != null && room101.getGuest().getName().equals(name)) {
+            return room101;
+        } else if (room102.getGuest() != null && room102.getGuest().getName().equals(name)) {
+            return room102;
+        }return null;
     }
 
     /**

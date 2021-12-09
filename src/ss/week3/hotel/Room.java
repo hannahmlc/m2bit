@@ -27,7 +27,7 @@ public class Room {
      * Returns the number of this Room
      */
     public int getNumber() {
-        return number;
+        return this.number;
     }
 
     /**
@@ -35,24 +35,19 @@ public class Room {
      * @return the guest of this Room, null if not rented
      */
     public Guest getGuest() {
-        return Guest;
+        return this.Guest;
     }
 
-
-    public Safe getSafe(){return safe;}
+    public Safe getSafe(){return this.safe;}
 
     /**
      * Assigns a Guest to this Room.
      * @param guest the new guest renting this Room, if null is given, Room is empty afterwards
      */
     public void setGuest(Guest guest) {
-
         this.Guest = guest;
     }
 
-    /**
-     *
-     */
     public String toString() {
         return "Room " + getNumber();
     }

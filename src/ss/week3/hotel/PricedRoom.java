@@ -22,7 +22,7 @@ private double pricePerNigth;
 
     @Override
     public String toString(){
-        return "Rooom" + getNumber() + " " + getAmount();
+        return "Rooom" + super.getNumber() + " " + getAmount();
     }
 
 }
