@@ -1,6 +1,9 @@
 package ss.week4;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -34,15 +37,46 @@ public class MapUtil {
         }
         return true;
     }
-    
+
+    /**
+     *
+     * @param map - map f
+     * @param <K> - key set of map f
+     * @param <V> - value set of map f
+     * @return a map of type Map<V, Set<K>>
+     */
     public static <K, V> Map<V, Set<K>> inverse(Map<K, V> map) {
-        // TODO: implement, see exercise P-4.12
-        return null;
+        Map<V, Set<K>> inverse = new HashMap<>();
+        //K[] keys = map.keySet().toArray();
+        for (K key : map.keySet()) {
+            List<K>Values = new ArrayList<K>();
+            if (inverse.containsKey(map.get(key))) {
+                Values = new ArrayList<K>(inverse.get(map.get(key)));
+            }
+            Values.add((K) key);
+            inverse.put(map.get(key), new HashSet<K>(Values));
+        }
+        return inverse;
     }
-    
+
+    /**
+     *
+     * @param map - map f
+     * @param <K> - key set of map f
+     * @param <V> - value set of map f
+     * @return returns a map of type Map<V, K> if the function is injective and surjective
+     */
     public static <K, V> Map<V, K> inverseBijection(Map<K, V> map) {
-        // TODO: implement, see exercise P-4.12
+        if(isOneOnOne(map)){
+            Map<V, K> inverse = new HashMap<V, K>();
+            for (K k : map.keySet()) {
+                inverse.put(map.get(k), k);
+            }
+            return inverse;
+        }
         return null;
+
+
     }
 	
     public static <K, V, W> boolean compatible(Map<K, V> f, Map<V, W> g) {
