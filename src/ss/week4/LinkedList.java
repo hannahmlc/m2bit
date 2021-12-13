@@ -33,11 +33,10 @@ public class LinkedList<Element> {
     public void remove(Element element) {
         if(first.getElement().equals(element)){
             first = first.next;
-        } else {
+        }else {
             Node before = findBefore(element);
             before.next = before.next.next;
         }
-
         size--;
     }
 

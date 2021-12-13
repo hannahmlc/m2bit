@@ -19,7 +19,7 @@ public class Board {
      * @invariant there are always DIM*DIM fields
      * @invariant all fields are either Mark.EMPTY, Mark.XX or Mark.OO
      */
-    private Mark[] fields;
+    private final Mark[] fields;
 
     // -- Constructors -----------------------------------------------
 
@@ -28,7 +28,8 @@ public class Board {
      * @ensures all fields are EMPTY
      */
     public Board() {
-    	// TODO: implement, see exercise P-4.6
+        fields = new Mark[DIM*DIM];
+        reset();
     }
 
     /**
@@ -37,8 +38,11 @@ public class Board {
      * @ensures the values of all fields of the copy match the ones of this Board
      */
     public Board deepCopy() {
-    	// TODO: implement, see exercise P-4.6
-        return null;
+        Board deepCopy = new Board();
+        for(int i = 0; i<9;i++){
+            deepCopy.fields[i] = fields[i];
+        }
+        return deepCopy;
     }
 
     /**
@@ -49,8 +53,8 @@ public class Board {
      * @return the index belonging to the (row,col)-field
      */
     public int index(int row, int col) {
-    	// TODO: implement, see exercise P-4.6
-        return 0;
+        int index = (row * Board.DIM) + col;
+        return index;
     }
 
     /**
@@ -59,8 +63,7 @@ public class Board {
      * @return true if 0 <= index < DIM*DIM
      */
     public boolean isField(int index) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        return (index < (Board.DIM * Board.DIM) && index>=0);
     }
 
     /**
@@ -69,8 +72,7 @@ public class Board {
      * @return true if 0 <= row < DIM && 0 <= col < DIM
      */
     public boolean isField(int row, int col) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        return ( row >=0 && row < Board.DIM && col >=0 && col < Board.DIM);
     }
     
     /**
@@ -81,8 +83,7 @@ public class Board {
      * @return the mark on the field
      */
     public Mark getField(int i) {
-    	// TODO: implement, see exercise P-4.6
-        return null;
+        return fields[i];
     }
 
     /**
@@ -94,8 +95,8 @@ public class Board {
      * @return the mark on the field
      */
     public Mark getField(int row, int col) {
-    	// TODO: implement, see exercise P-4.6
-        return null;
+    	int index = index(row,col);
+        return fields[index];
     }
 
     /**
@@ -106,8 +107,9 @@ public class Board {
      * @return true if the field is empty
      */
     public boolean isEmptyField(int i) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        if (isField(i)){
+            return getField(i)==Mark.EMPTY;
+        } else return false;
     }
 
     /**
@@ -119,8 +121,10 @@ public class Board {
      * @return true if the field is empty
      */
     public boolean isEmptyField(int row, int col) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+    	int index = index(row,col);
+        if (isField(index)) {
+            return getField(index)==Mark.EMPTY;
+        } else return false;
     }
 
     /**
@@ -129,8 +133,12 @@ public class Board {
      * @return true if all fields are occupied
      */
     public boolean isFull() {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+    	for (int i = 0; i< Board.DIM * Board.DIM; i++){
+            if (getField(i) ==Mark.EMPTY) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -140,8 +148,7 @@ public class Board {
      * @return true if the game is over
      */
     public boolean gameOver() {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        return (hasWinner() || isFull() );
     }
 
     /**
@@ -151,8 +158,21 @@ public class Board {
      * @return true if there is a row controlled by m
      */
     public boolean hasRow(Mark m) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        boolean hasRow = false;
+
+        for (int row = 0; row < DIM; row++) {
+            boolean sameMark = true;
+            for (int col = 0; col < DIM; col++) {
+                if (getField(row,col) != m) {
+                    sameMark = false;
+                }
+            }
+            if (sameMark) {
+                hasRow = true;
+                break;
+            }
+        }
+        return hasRow;
     }
 
     /**
@@ -162,8 +182,21 @@ public class Board {
      * @return true if there is a column controlled by m
      */
     public boolean hasColumn(Mark m) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        boolean hasColumn = false;
+
+        for (int row = 0; row < DIM; row++) {
+            boolean sameMark = true;
+            for (int col = 0; col < DIM; col++) {
+                if (getField(col,row) != m) {
+                    sameMark = false;
+                }
+            }
+            if (sameMark) {
+                hasColumn = true;
+                break;
+            }
+        }
+        return hasColumn;
     }
 
     /**
@@ -173,8 +206,21 @@ public class Board {
      * @return true if there is a diagonal controlled by m
      */
     public boolean hasDiagonal(Mark m) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        boolean hasDiagonal = false;
+        boolean left = true; // for the line starting from top left
+        boolean right = true; //// for the line starting from top right
+        for (int i = 0; i < Board.DIM; i++) {
+            //check for line from top left
+            if (!getField(i, i).equals(m)) {
+                left = false;
+            }
+            //check for lien from top right
+            if (!getField(Board.DIM - i - 1, i).equals(m)) {
+                right = false;
+            }
+            hasDiagonal = left || right;
+        }
+        return hasDiagonal;
     }
 
     /**
@@ -186,8 +232,7 @@ public class Board {
      * @return true if the mark has won
      */
     public boolean isWinner(Mark m) {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        return (hasColumn(m) || hasRow(m) || hasDiagonal(m));
     }
 
     /**
@@ -197,8 +242,7 @@ public class Board {
      * @return true if the student has a winner.
      */
     public boolean hasWinner() {
-    	// TODO: implement, see exercise P-4.6
-        return false;
+        return (isWinner(Mark.XX) || isWinner(Mark.OO));
     }
 
     /**
@@ -231,7 +275,9 @@ public class Board {
      * @ensures all fields are EMPTY
      */
     public void reset() {
-    	// TODO: implement, see exercise P-4.6
+    	for (int i=0;i< DIM*DIM;i++){
+            setField(i, Mark.EMPTY);
+        }
     }
 
     /**
@@ -242,7 +288,7 @@ public class Board {
      * @param m the mark to be placed
      */
     public void setField(int i, Mark m) {
-    	// TODO: implement, see exercise P-4.6
+    	fields[i]=m;
     }
 
     /**
@@ -255,6 +301,7 @@ public class Board {
      * @param m the mark to be placed
      */
     public void setField(int row, int col, Mark m) {
-    	// TODO: implement, see exercise P-4.6
+        int index = index(row,col);
+        setField(index, m);
     }
 }
