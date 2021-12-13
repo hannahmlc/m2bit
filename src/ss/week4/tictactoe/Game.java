@@ -78,13 +78,12 @@ public class Game {
      * After each move, the changed game situation is printed.
      */
     private void play() {
-        // TODO: implement, see P-4.7
         current = 1;
         while (!(board.gameOver())) {
             current = current % 2; // player 1 or 2
             update(); // prints the board and current game situation
             Mark mark = players[current].getMark();
-            System.out.print("Place your symbol: ");
+            System.out.print("Place your mark: ");
             String input = TextIO.getlnString();
             if(!input.equals("")) {
                 int choice = Integer.parseInt(input);

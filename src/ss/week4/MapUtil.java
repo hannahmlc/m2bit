@@ -1,14 +1,21 @@
 package ss.week4;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class MapUtil {
+
+    /**
+     * checks whatever Map<K,V> f passed as a parameter is an injection
+     * @param map - map f
+     * @param <K> - key set of map f
+     * @param <V> - elements of map f
+     * @return true if for all v in the value set of the map f, there exists exactly one key k in the map’s key set, such that v == f.get(k)
+     */
     public static <K, V> boolean isOneOnOne(Map<K, V> map) {
-        // TODO: implement, see exercise P-4.10
-        return false;
+        HashSet<V> valueSet = new HashSet<>(map.values());
+        return (valueSet.size() == map.keySet().size());
     }
     
     public static <K, V> boolean isSurjectiveOnRange(Map<K, V> map, Set<V> range) {
