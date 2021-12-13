@@ -79,6 +79,25 @@ public class Game {
      */
     private void play() {
         // TODO: implement, see P-4.7
+        current = 0;
+        while (!(board.gameOver())) {
+            current = (current + 1) % 2; // player 1 or 2
+            update(); // prints the board and current game situation
+            Mark mark = players[current].getMark();
+            System.out.print("Place your symbol: ");
+            String input = TextIO.getlnString();
+            if(!input.equals("")) {
+                int choice = Integer.parseInt(input);
+                if (board.isField(choice) && board.isEmptyField(choice)) {
+                    board.setField(choice, mark);
+                } else {
+                    System.out.print("incorrect index");
+                }
+            }
+            current++; // change player
+        }
+        update();
+        this.printResult();
     }
 
     /**
