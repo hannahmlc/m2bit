@@ -78,15 +78,45 @@ public class MapUtil {
 
 
     }
-	
+
+    /**
+     * checks whether the two maps passed as parameter can be composed,
+     * i.e., whether all values in the value set of the first map are in the key set of the second map.
+     * @param f - map f
+     * @param g - map g
+     * @param <K> - key set of map f
+     * @param <V> - value set of map f,
+     *           value set of map f
+     * @param <W> - value set of map g
+     * @return true if two maps can be composed
+     */
     public static <K, V, W> boolean compatible(Map<K, V> f, Map<V, W> g) {
-        // TODO: implement, see exercise P-4.13
-        return false;
+        for (V v : f.values()) {
+            if (!g.keySet().contains(v)) {
+                return false;
+            }
+        }
+        return true;
     }
-	
+
+    /**
+     * defines the composition of two maps, provided they are compatible.
+     * @param f - map f
+     * @param g - map g
+     * @param <K> - key set of map f
+     * @param <V> - value set of map f,
+     *           value set of map f
+     * @param <W> - value set of map g
+     * @return composition of map g and f
+     */
     public static <K, V, W> Map<K, W> compose(Map<K, V> f, Map<V, W> g) {
-        // TODO: implement, see exercise P-4.13
-        return null;
+        Map<K,W> composition = new HashMap<K,W>();
+        if(compatible(f,g)){
+            for (K k : f.keySet()){
+                composition.put(k, g.get(f.get(k)));
+            }
+        }
+        return composition;
     }
 	
 }

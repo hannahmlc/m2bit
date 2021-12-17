@@ -79,25 +79,18 @@ public class Game {
      */
     private void play() {
         current = 1;
-        while (!(board.gameOver())) {
-            current = current % 2; // player 1 or 2
-            update(); // prints the board and current game situation
-            Mark mark = players[current].getMark();
-            System.out.print("Place your mark: ");
-            String input = TextIO.getlnString();
-            if(!input.equals("")) {
-                int choice = Integer.parseInt(input);
-                if (board.isField(choice) && board.isEmptyField(choice)) {
-                    board.setField(choice, mark);
-                } else {
-                    System.out.print("incorrect index");
-                }
-            }
+        while (!(board.gameOver())){
+            current = current % 2; // player can only be 1(index 0) or 2 (index 1)
+            this.update(); // prints the board and current game situation
+            int choice;
+            choice = players[current].determineMove(board);
+            board.setField(choice, players[current].getMark());
             current++; // change player
         }
-        update();
+        this.update();
         this.printResult();
     }
+
 
     /**
      * Prints the game situation.
