@@ -1,8 +1,5 @@
 package ss.week5.tictactoe;
 
-import ss.week4.tictactoe.Board;
-import ss.week4.tictactoe.Mark;
-
 public class ComputerPlayer extends Player{
 
     private Strategy strategy;
