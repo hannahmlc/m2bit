@@ -4,9 +4,12 @@
  /_/ \_\_|\_|___/ \_/\_/ |___|_|_\|___/   \_/\_/ |___|___|_|\_\ |___/
 
 Your name(s):
--
+- Hanna Hamielec
 -
 
 Please submit your textual answers to the following questions in this file:
+- P-5.7
+Hexadecmial output changes to longer, slightly different, hexadecimal number
+
 - P-5.8
 

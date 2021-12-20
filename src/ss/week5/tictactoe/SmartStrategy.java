@@ -11,7 +11,6 @@ public class SmartStrategy implements Strategy {
         return "Smart";
     }
 
-
     /**
      * @param board the current game board
      * @param mark  - mark of the player
@@ -35,6 +34,7 @@ public class SmartStrategy implements Strategy {
         }
 
         for (int i=0; i<Board.DIM*Board.DIM;i++){
+            //add empty field to list of empty fields
             if (board.isEmptyField(i)){
                 emptyFields.add(i);
             }
@@ -50,10 +50,11 @@ public class SmartStrategy implements Strategy {
             if (deepCopy.isWinner(otherMark)) {
                 return i;
             }
+
             deepCopy.setField(i, Mark.EMPTY);
         }
 
-            // If none of the cases above applies, a random field is selected.
-            return emptyFields.get((int)(Math.random()*(emptyFields.size()-1)));
-        }
+        // If none of the cases above applies, a random field is selected.
+        return emptyFields.get((int)(Math.random()*(emptyFields.size()-1)));
+    }
 }

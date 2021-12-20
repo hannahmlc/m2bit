@@ -31,7 +31,7 @@ public class TicTacToe {
         Player player;
         if (input.equals("-N")){
             player = new ComputerPlayer(mark);
-        }else if (input.equals("-P")){
+        }else if (input.equals("-S")){
             player = new ComputerPlayer(mark,new SmartStrategy());
         } else{
             player = new HumanPlayer(input, mark);
