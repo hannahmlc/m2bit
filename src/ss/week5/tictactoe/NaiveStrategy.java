@@ -8,7 +8,7 @@ public class NaiveStrategy implements Strategy{
      */
     @Override
     public String getName() {
-        return null;
+        return "Naive";
     }
 
     /**
