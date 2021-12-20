@@ -1,4 +1,4 @@
-package ss.week5.test;
+package ss.week5;
 
 public class Zipper {
 	/**
