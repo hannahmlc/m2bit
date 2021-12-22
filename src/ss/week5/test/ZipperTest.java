@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import ss.week5.ArgumentLengthsDifferException;
+import ss.week5.TooFewArgumentsException;
+import ss.week5.Zipper;
 
 /**
  * Test program for Zipper.

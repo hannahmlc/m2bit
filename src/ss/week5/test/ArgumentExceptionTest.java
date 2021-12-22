@@ -1,12 +1,13 @@
 package ss.week5.test;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
-
+import org.junit.jupiter.api.Test;
 import ss.week5.ArgumentLengthsDifferException;
+import ss.week5.TooFewArgumentsException;
 import ss.week5.WrongArgumentException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
