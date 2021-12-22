@@ -1,0 +1,3 @@
+Clubs 2
+Diamonds 3
+Hearts 4

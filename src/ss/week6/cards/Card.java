@@ -1,5 +1,8 @@
 package ss.week6.cards;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class Card
 {
 
@@ -26,6 +29,27 @@ public class Card
 	private static final String[] SUIT_STRINGS = {"Clubs", "Diamonds",
 	    "Hearts", "Spades"};
 
+	// ---- main methods -------------------------------------
+
+	public static void main(String[] args) throws FileNotFoundException {
+		PrintWriter pw;
+
+		if (args.length < 1) {
+			pw = new PrintWriter(System.out);
+		} else {
+			pw = new PrintWriter(args[0]);
+		}
+
+		Card card1 = new Card('C','2');
+		Card card2 = new Card('D','3');
+		Card card3 = new Card('H','4');
+
+		card1.write(pw);
+		card2.write(pw);
+		card3.write(pw);
+		pw.close();
+	}
+
 	// ---- class methods -------------------------------------
 
 	/**
@@ -44,7 +68,7 @@ public class Card
 
 	/**
 	 * Translates a suit String into its character encoding.
-	 * @param  rank the String representation of a suit
+	 * @param suit the String representation of a suit
 	 * @return the character encoding of suit
 	 * @return '?' if <code>isValidSuit(suit)</code> returns <code>false</code>
 	 */
@@ -300,4 +324,14 @@ public class Card
 	public boolean isInRankBefore(Card card) {
 		return isRankFollowing(this.getRank(), card.getRank());
 	}
+
+	/**
+	 * send a representation of the object on which the method is called
+	 * @param printWriter
+	 */
+	public void write(PrintWriter printWriter){
+		printWriter.println(this.toString());
+		printWriter.flush();
+	}
+
 }
