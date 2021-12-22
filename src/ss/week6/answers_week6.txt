@@ -7,6 +7,9 @@ Your name(s):
 -
 -
 
+//TODO: UNCOMMENT TEst in dictionary attack and card
+
+
 Please submit your textual answers to the following questions in this file:
 - P-6.9
 - P-6.11

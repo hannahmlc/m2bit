@@ -1,13 +1,7 @@
 package ss.week6.test;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import ss.week6.cards.Card;
-
-import java.io.*;
 
 /**
  * Testprogram for the write and read methods in Card.
@@ -29,7 +23,7 @@ public class CardTest {
     }
 
     /** Test for writing and reading a card with text files.*/
-    @Test
+   /* @Test
     public void testReadingWritingFiles() {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(PATH + "card.txt"));
@@ -44,5 +38,5 @@ public class CardTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
