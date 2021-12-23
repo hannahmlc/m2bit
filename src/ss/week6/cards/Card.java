@@ -1,7 +1,11 @@
 package ss.week6.cards;
 
+import java.io.BufferedReader;
+import java.io.EOFException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class Card
 {
@@ -48,6 +52,10 @@ public class Card
 		card2.write(pw);
 		card3.write(pw);
 		pw.close();
+
+
+
+
 	}
 
 	// ---- class methods -------------------------------------
@@ -332,6 +340,33 @@ public class Card
 	public void write(PrintWriter printWriter){
 		printWriter.println(this.toString());
 		printWriter.flush();
+	}
+
+	/**
+	 * should read from BufferedReader in and return a Card instance on based on this input.
+	 *
+	 * @param in - BufferReader that is being read from
+	 * @return Card instance based on  input
+	 * 			null if the BufferedReader does not allow for the construction of a valid card
+	 * 			EOFException when the BufferedReader is finished
+	 * @throws EOFException .
+	 */
+	public static Card read ( BufferedReader in ) throws EOFException {
+			Card card = null;
+		char suit;
+		char rank;
+		try {
+			Scanner s = new Scanner(in.readLine());
+			suit = (s.next().toCharArray())[0];
+			rank = (s.next().toUpperCase().toCharArray())[0];
+			s.close();
+			if (isValidSuit(suit) && isValidRank(rank)) {
+				card = new Card(suit, rank);
+			}
+			} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return card;
 	}
 
 }

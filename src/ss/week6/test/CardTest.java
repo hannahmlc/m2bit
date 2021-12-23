@@ -1,6 +1,14 @@
 package ss.week6.test;
 
+import static org.junit.Assert.assertEquals;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import ss.week6.cards.Card;
 
 /**
@@ -23,7 +31,7 @@ public class CardTest {
     }
 
     /** Test for writing and reading a card with text files.*/
-   /* @Test
+    @Test
     public void testReadingWritingFiles() {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(PATH + "card.txt"));
@@ -38,5 +46,5 @@ public class CardTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }
