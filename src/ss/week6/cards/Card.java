@@ -3,6 +3,7 @@ package ss.week6.cards;
 import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -44,17 +45,30 @@ public class Card
 			pw = new PrintWriter(args[0]);
 		}
 
-		Card card1 = new Card('C','2');
-		Card card2 = new Card('D','3');
-		Card card3 = new Card('H','4');
+		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\hanis\\Desktop\\_uni_\\BIT\\m2_bit\\m2bit\\cardfile.txt"));
 
-		card1.write(pw);
-		card2.write(pw);
-		card3.write(pw);
+		try {
+			Card card1 = new Card('C','2');
+			Card card2 = new Card('D','3');
+			Card card3 = new Card('H','4');
+
+			card1.write(pw);
+			card2.write(pw);
+			card3.write(pw);
+			//Card card1_2 = Card.read(reader);
+			if (!card1.equals(read(reader))) {
+				System.out.println("Card 1 differs");
+			}
+			if (!card2.equals(read(reader))) {
+				System.out.println("Card 2 differs");
+			}
+			if (!card3.equals(read(reader))) {
+				System.out.println("Card 3 differs");
+			}
+		} catch (EOFException e) {
+			e.printStackTrace();
+		}
 		pw.close();
-
-
-
 
 	}
 
