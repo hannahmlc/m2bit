@@ -16,8 +16,16 @@ Please submit your textual answers to the following questions in this file:
 so it could take up to 26^4 tries using brute force to find Alice's password
 
 - P-6.11
+Thread that is used to draw the image overrides the thread running the programme
+
 - P-6.12
+menu can no longer overlaps the drawing, and can't be used even when the drawing is finished.
+Thread drawing the mandel works once and stops the run thread
+
+
 - P-6.14
+
+
 - P-6.18
 - P-6.20
 - P-6.21

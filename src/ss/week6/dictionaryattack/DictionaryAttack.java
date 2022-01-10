@@ -115,7 +115,6 @@ public class DictionaryAttack {
 
 	public static void main(String[] args) {
 		DictionaryAttack da = new DictionaryAttack();
-		// To implement
 		da.doDictionaryAttack();
 	}
 
