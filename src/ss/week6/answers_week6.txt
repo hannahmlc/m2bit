@@ -4,7 +4,7 @@
  /_/ \_\_|\_|___/ \_/\_/ |___|_|_\|___/   \_/\_/ |___|___|_|\_\ \___/
 
 Your name(s):
--
+-Hanna Hamielec
 -
 
 //TODO: UNCOMMENT TEst in dictionary attack and card

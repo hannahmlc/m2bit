@@ -3,6 +3,7 @@ package ss.week6.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ss.week6.dictionaryattack.DictionaryAttack;
@@ -22,7 +23,7 @@ public class DictionaryAttackTest {
     private static final String PATH = "./src/ss/week6/test/"; // Path to the test folder
 
     @BeforeEach
-    /*public void setUp() {
+    public void setUp() {
         dictionaryAttack = new DictionaryAttack();
         try {
             dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
@@ -30,7 +31,7 @@ public class DictionaryAttackTest {
             System.err.println("Unable to read password file.");
             e.printStackTrace();
         }
-    }*/
+    }
 
     /**
      * Test for <tt>getPasswordHash</tt>
