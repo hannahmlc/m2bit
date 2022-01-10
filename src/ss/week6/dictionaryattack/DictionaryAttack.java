@@ -1,6 +1,7 @@
 package ss.week6.dictionaryattack;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -76,14 +77,42 @@ public class DictionaryAttack {
 	 * @param filename filename of the dictionary (full path)
 	 */
     	public void addToHashDictionary(String filename) {
-        // To implement        
+			this.hashDictionary = new HashMap<String, String>();
+			File passwordsFile = new File(filename);
+			try {
+				Scanner scanner = new Scanner(passwordsFile);
+
+				while (scanner.hasNextLine()) {
+					String password = scanner.nextLine();
+					String passwordHash = getPasswordHash(password);
+					hashDictionary.put(passwordHash, password);
+				}
+
+				scanner.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
     }
 	/**
 	 * Do the dictionary attack.
 	 */
 	public void doDictionaryAttack() {
-		// To implement
+		String path = "./src/ss/week6/";
+		try {
+			readPasswords(path + "test/LeakedPasswords.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		addToHashDictionary(path +"dictionaryattack/commonPasswords.txt");
+
+		for (String username: passwordMap.keySet()) {
+			if (hashDictionary.containsKey(passwordMap.get(username))) {
+				System.out.println("username: " + username + " password: "
+					+ hashDictionary.get(passwordMap.get(username)));
+			}
+		}
 	}
+
 	public static void main(String[] args) {
 		DictionaryAttack da = new DictionaryAttack();
 		// To implement

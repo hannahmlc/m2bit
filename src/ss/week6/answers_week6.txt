@@ -7,11 +7,14 @@ Your name(s):
 -Hanna Hamielec
 -
 
-//TODO: UNCOMMENT TEst in dictionary attack and card
+
 
 
 Please submit your textual answers to the following questions in this file:
 - P-6.9
+26 lower case letters - there's 26^4 four letter lowercase word,
+so it could take up to 26^4 tries using brute force to find Alice's password
+
 - P-6.11
 - P-6.12
 - P-6.14
