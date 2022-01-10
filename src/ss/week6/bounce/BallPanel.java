@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ListIterator;
-
+import javax.swing.Timer;
 import javax.swing.JPanel;
 
 /**
@@ -13,11 +13,19 @@ import javax.swing.JPanel;
  * Used with TimedBouncer.
  * @version 2005.02.22
  */
-public class BallPanel extends JPanel {
+public class BallPanel extends JPanel implements ActionListener {
 	private List<Ball> balls;
 
 	public BallPanel() {
 		this.balls = new java.util.ArrayList<>();
+		Timer time = new Timer(5,this);
+		time.start();
+	}
+
+	public class AnimateThread implements Runnable {
+		public void run() {
+			animate();
+		}
 	}
 
 	public void animate() {
@@ -31,6 +39,7 @@ public class BallPanel extends JPanel {
 			e.printStackTrace();
 		}
 	}
+
 
 	/** Add a new ball to the ball list and start the timer if not yet running. */
 	public synchronized void addNewBall() {
@@ -70,4 +79,19 @@ public class BallPanel extends JPanel {
 			b.draw(g);
 		}
 	}
+
+	/**
+	 * pplements the method from the interface ActionListener
+	 * draw and move balls
+	 * @param e the event to be processed
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		moveBalls();
+		repaint();
+	}
+
+
+
+
 }
