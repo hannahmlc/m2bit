@@ -38,13 +38,13 @@ public class Encoding {
 
 
         //• decode the Base64 string U29mdHdhcmUgRGV2ZWxvcG1lbnQ= and print it.
-        System.out.println(new String(Base64.decodeBase64("U29mdHdhcmUgU3lzdGVtcw==")));
+        System.out.println(new String(Base64.decodeBase64("U29mdHdhcmUgRGV2ZWxvcG1lbnQ=")));
 
 
         //• produce the Base64 encoding for each of the following strings: "a", "aa", "aaa"..., "aaaaaaaaaa". Print each result on a new line.
         String a = "a";
         for(int i = 1; i < 10; i++) {
-            System.out.println(Base64.encodeBase64(a.getBytes()));
+            System.out.println(Base64.encodeBase64String(a.getBytes()));
             a += "a";
         }
     }

@@ -1,6 +1,7 @@
 package ss.week5.tictactoe;
 import ss.utils.TextIO;
-
+import ss.week4.tictactoe.Board;
+import ss.week4.tictactoe.Mark;
 /**
  * Class for maintaining a human player in Tic Tac Toe. Module 2 lab assignment
  *

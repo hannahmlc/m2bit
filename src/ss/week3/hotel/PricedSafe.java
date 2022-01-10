@@ -24,10 +24,12 @@ public class PricedSafe extends Safe implements Bill.Item{
      * activates the safe if received password is correct;
      * @param Password - provided password
      */
-    public void activate(String Password){
+    public boolean activate(String Password){
         if (getPassword().testWord(Password)) {
             super.activate();
+            return true;
         }
+        else return false;
     }
 
     /**

@@ -1,6 +1,7 @@
 package ss.week5.tictactoe;
 
 import ss.utils.TextIO;
+import ss.week4.tictactoe.*;
 
 public class Game {
     public static final int NUMBER_PLAYERS = 2;

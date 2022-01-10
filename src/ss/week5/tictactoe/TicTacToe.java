@@ -1,8 +1,7 @@
 package ss.week5.tictactoe;
 
-
 import ss.utils.TextIO;
-
+import ss.week4.tictactoe.Mark;
 
 public class TicTacToe {
     public static void main(String[] args) {

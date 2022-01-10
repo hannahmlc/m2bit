@@ -1,5 +1,6 @@
 package ss.week5.tictactoe;
-
+import ss.week4.tictactoe.Board;
+import ss.week4.tictactoe.Mark;
 
 /**
  * Abstract class for keeping a player in the Tic Tac Toe game. Module 2 lab
@@ -62,7 +63,7 @@ public abstract class Player {
      * @requires board is not null and not full
      * @param board the current board
      */
-    public void makeMove(ss.week5.tictactoe.Board board) {
+    public void makeMove(Board board) {
         int choice = determineMove(board);
         board.setField(choice, getMark());
     }

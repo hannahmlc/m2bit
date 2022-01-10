@@ -1,5 +1,6 @@
 package ss.week5.tictactoe;
-import ss.week4.tictactoe.*;
+import ss.week4.tictactoe.Board;
+import ss.week4.tictactoe.Mark;
 
 public interface Strategy {
 
