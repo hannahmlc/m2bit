@@ -57,3 +57,11 @@ since account class is not thread safe and transactions are not protected, after
 threads at the same time causing the final value to not be correct
 
 - P-6.29
+
+1. results of this program are content of the cell, sum of arguments of ttwo thread which adds up after joining
+
+2. you can not call start() method twice on the thread object, the second call of start() will throw IllegalStateException
+
+3. thread while in the blocked state could be interrupted and program wouldnt work
+
+4. the methods wouldn't overlap but could interup the sequence exacution

@@ -35,6 +35,8 @@ class Adder implements Runnable {
         this.amount = amountArg;
     }
     public void run() {
-        cell.add(amount);
+        synchronized (cell) {
+            cell.add(amount);
+        }
     }
 }
