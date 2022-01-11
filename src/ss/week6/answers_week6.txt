@@ -22,7 +22,6 @@ Thread that is used to draw the image overrides the thread running the programme
 menu can no longer overlaps the drawing, and can't be used even when the drawing is finished.
 Thread drawing the mandel works once and stops the run thread
 
-
 - P-6.14
 Because no thread that would actually draw and start the bouncing ball animation is made
 
@@ -38,20 +37,23 @@ no, the thread are still overlapping
 - P-6.23
 1.What does it mean for a lock to be reentrant?
 it means that lock allows threads to reenter/use lock many times without deadlock
-
-
 2. Is this behaviour different from the synchronized statement?
 Synchronized releases the lock automatically, while Lock must release the lock manually, also
  synchronize locks classes, methods, and code blocks, while Lock is block-wide
-
 3. What would be advantages of using a ReentrantLock?
 flexibility,ability to lock interruptibly and timeout while waiting for lock.
-
-
 4. And what would be disadvantages?
 Easier to forget to unlock; programmer is responsible for remembering about the lock
 
 - P-6.25
+values put by producers aren't read and printed in the  correct order
+it can be solved by synchronizing the thread and making them wait to notify each other
+
 - P-6.26
+notifyAll is preferable, because notify has bigger risk of thread missing
+
 - P-6.28
+since account class is not thread safe and transactions are not protected, after some time they are executed by multiple
+threads at the same time causing the final value to not be correct
+
 - P-6.29
