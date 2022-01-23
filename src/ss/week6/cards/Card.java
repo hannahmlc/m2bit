@@ -45,7 +45,7 @@ public class Card
 			pw = new PrintWriter(args[0]);
 		}
 
-		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\hanis\\Desktop\\_uni_\\BIT\\m2_bit\\m2bit\\cardfile.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("./src/ss/week6/cards/cardfile.txt"));
 
 		try {
 			Card card1 = new Card('C','2');
