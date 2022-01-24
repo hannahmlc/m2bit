@@ -1,0 +1,15 @@
+
+Your name(s):
+-Hanna Hamielec
+-
+
+
+
+
+- P-7.2
+MVC makes model classes reusable without modification, it enables simultaneous development,
+many people can work in parallel on different components of project without impacting or interjecting one another.
+MVC makes components of the project independent of each other, which allows to reuse them quickly and easily in other applications
+
+- 7.5
+
