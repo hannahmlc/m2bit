@@ -107,6 +107,10 @@ public class Hotel {
         } else return null;
     }
 
+    public String getName() {
+        return this.hotelName;
+    }
+
 
     private class Item implements Bill.Item {
         private final double _amount;

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
-
+import java.util.Scanner;
 import ss.week7.hotel.exceptions.ExitProgram;
 import ss.week7.hotel.exceptions.ProtocolException;
 import ss.week7.hotel.exceptions.ServerUnavailableException;
@@ -24,12 +24,14 @@ public class HotelClient implements ClientProtocol {
 	private Socket serverSock;
 	private BufferedReader in;
 	private BufferedWriter out;
+	private HotelClientTUI hotelTui;
+
 
 	/**
 	 * Constructs a new HotelClient. Initialises the view.
 	 */
 	public HotelClient() {
-		// To be implemented
+		hotelTui = new HotelClientTUI(this);
 	}
 
 	/**
@@ -42,7 +44,21 @@ public class HotelClient implements ClientProtocol {
 	 * user is asked whether a new connection should be made.
 	 */
 	public void start() {
-		// To be implemented
+		try {
+			createConnection();
+			handleHello();
+			hotelTui.start();
+		} catch (ServerUnavailableException | ProtocolException | ExitProgram e) {
+			hotelTui.showMessage(String.valueOf(e));
+			hotelTui.showMessage("Start a new connection ?  yes/no");
+			String[] answer = new Scanner(System.in).next().toLowerCase().split(" ");
+			if(answer[0].equals("yes")){
+				start();
+			} else {
+				hotelTui.showMessage("Good bye !");
+			}
+		}
+
 	}
 
 	/**
@@ -66,15 +82,15 @@ public class HotelClient implements ClientProtocol {
 			// try to open a Socket to the server
 			try {
 				InetAddress addr = InetAddress.getByName(host);
-				System.out.println("Attempting to connect to " + addr + ":" 
+				hotelTui.showMessage("Attempting to connect to " + addr + " on port "
 					+ port + "...");
 				serverSock = new Socket(addr, port);
 				in = new BufferedReader(new InputStreamReader(
-						serverSock.getInputStream()));
+					serverSock.getInputStream()));
 				out = new BufferedWriter(new OutputStreamWriter(
-						serverSock.getOutputStream()));
+					serverSock.getOutputStream()));
 			} catch (IOException e) {
-				System.out.println("ERROR: could not create a socket on " 
+				hotelTui.showMessage("ERROR: could not create a socket on "
 					+ host + " and port " + port + ".");
 
 				//Do you want to try again? (ask user, to be implemented)
@@ -104,21 +120,20 @@ public class HotelClient implements ClientProtocol {
 	 * @param msg the message to write to the OutputStream.
 	 * @throws ServerUnavailableException if IO errors occur.
 	 */
-	public synchronized void sendMessage(String msg) 
-			throws ServerUnavailableException {
+	public synchronized void sendMessage(String msg) throws ServerUnavailableException {
 		if (out != null) {
 			try {
 				out.write(msg);
 				out.newLine();
 				out.flush();
 			} catch (IOException e) {
-				System.out.println(e.getMessage());
+				hotelTui.showMessage(e.getMessage());
 				throw new ServerUnavailableException("Could not write "
-						+ "to server.");
+					+ "to server.");
 			}
 		} else {
 			throw new ServerUnavailableException("Could not write "
-					+ "to server.");
+				+ "to server.");
 		}
 	}
 
@@ -128,24 +143,20 @@ public class HotelClient implements ClientProtocol {
 	 * @return the line sent by the server.
 	 * @throws ServerUnavailableException if IO errors occur.
 	 */
-	public String readLineFromServer() 
-			throws ServerUnavailableException {
+	public String readLineFromServer() throws ServerUnavailableException {
 		if (in != null) {
 			try {
 				// Read and return answer from Server
 				String answer = in.readLine();
 				if (answer == null) {
-					throw new ServerUnavailableException("Could not read "
-							+ "from server.");
+					throw new ServerUnavailableException("Could not read from server.");
 				}
 				return answer;
 			} catch (IOException e) {
-				throw new ServerUnavailableException("Could not read "
-						+ "from server.");
+				throw new ServerUnavailableException("Could not read from server.");
 			}
 		} else {
-			throw new ServerUnavailableException("Could not read "
-					+ "from server.");
+			throw new ServerUnavailableException("Could not read from server.");
 		}
 	}
 
@@ -156,25 +167,24 @@ public class HotelClient implements ClientProtocol {
 	 * @return the concatenated lines sent by the server.
 	 * @throws ServerUnavailableException if IO errors occur.
 	 */
-	public String readMultipleLinesFromServer() 
-			throws ServerUnavailableException {
+	public String readMultipleLinesFromServer() throws ServerUnavailableException {
 		if (in != null) {
 			try {
 				// Read and return answer from Server
 				StringBuilder sb = new StringBuilder();
 				for (String line = in.readLine(); line != null
-						&& !line.equals(ProtocolMessages.EOT); 
-						line = in.readLine()) {
+					&& !line.equals(ProtocolMessages.EOT);
+					 line = in.readLine()) {
 					sb.append(line + System.lineSeparator());
 				}
 				return sb.toString();
 			} catch (IOException e) {
 				throw new ServerUnavailableException("Could not read "
-						+ "from server.");
+					+ "from server.");
 			}
 		} else {
 			throw new ServerUnavailableException("Could not read "
-					+ "from server.");
+				+ "from server.");
 		}
 	}
 
@@ -183,7 +193,7 @@ public class HotelClient implements ClientProtocol {
 	 * well as the serverSocket.
 	 */
 	public void closeConnection() {
-		System.out.println("Closing the connection...");
+		hotelTui.showMessage("Closing the connection...");
 		try {
 			in.close();
 			out.close();
@@ -194,46 +204,60 @@ public class HotelClient implements ClientProtocol {
 	}
 	
 	@Override
-	public void handleHello() 
-			throws ServerUnavailableException, ProtocolException {
-		// To be implemented
+	public void handleHello() throws ServerUnavailableException, ProtocolException {
+		sendMessage(ProtocolMessages.HELLO+ProtocolMessages.DELIMITER);
+		hotelTui.showMessage("> " +readMultipleLinesFromServer());
 	}
 	
 	@Override
 	public void doIn(String guestName) throws ServerUnavailableException {
-		// To be implemented
+		sendMessage(ProtocolMessages.IN+ProtocolMessages.DELIMITER+guestName);
+		hotelTui.showMessage("> " + readMultipleLinesFromServer());
 	}
 
 	@Override
 	public void doOut(String guestName) throws ServerUnavailableException {
-		// To be implemented
+		sendMessage(ProtocolMessages.OUT+ProtocolMessages.DELIMITER+guestName);
+		hotelTui.showMessage("> " + readMultipleLinesFromServer());
 	}
 
 	@Override
 	public void doRoom(String guestName) throws ServerUnavailableException {
-		// To be implemented
+		sendMessage(ProtocolMessages.ROOM+ProtocolMessages.DELIMITER+guestName);
+		hotelTui.showMessage("> " + readMultipleLinesFromServer());
 	}
 
 	@Override
-	public void doAct(String guestName, String password) 
-			throws ServerUnavailableException {
-		// To be implemented
+	public void doAct(String guestName, String password) throws ServerUnavailableException {
+		sendMessage(ProtocolMessages.ACT+ProtocolMessages.DELIMITER+guestName
+			+ProtocolMessages.DELIMITER+password);
+		hotelTui.showMessage("> " + readMultipleLinesFromServer());
 	}
 
 	@Override
-	public void doBill(String guestName, String nights) 
-			throws ServerUnavailableException {
-		// To be implemented
+	public void doBill(String guestName, String nights) throws ServerUnavailableException {
+		try {
+			int number = Integer.parseInt(nights);
+			sendMessage(ProtocolMessages.BILL+ProtocolMessages.DELIMITER
+				+ guestName + ProtocolMessages.DELIMITER + nights);
+
+			hotelTui.showMessage("> " + readMultipleLinesFromServer());
+		} catch(Exception e){
+			hotelTui.showMessage("> Invalid nights");
+		}
 	}
 
 	@Override
 	public void doPrint() throws ServerUnavailableException {
-		// To be implemented
+		sendMessage(ProtocolMessages.PRINT+ProtocolMessages.DELIMITER);
+		hotelTui.showMessage("> " + readMultipleLinesFromServer());
 	}
 
 	@Override
 	public void sendExit() throws ServerUnavailableException {
-		// To be implemented
+		sendMessage(ProtocolMessages.EXIT+ProtocolMessages.DELIMITER);
+		hotelTui.showMessage("> " +readMultipleLinesFromServer());
+		closeConnection();
 	}
 
 	/**

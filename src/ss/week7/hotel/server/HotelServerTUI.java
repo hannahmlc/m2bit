@@ -1,6 +1,7 @@
 package ss.week7.hotel.server;
 
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 
 /**
@@ -24,23 +25,24 @@ public class HotelServerTUI implements HotelServerView {
 	public void showMessage(String message) {
 		console.println(message);
 	}
-	
+
 	@Override
 	public String getString(String question) {
-		// To be implemented
-		return "U Parkhotel";
+		System.out.println(question);
+		return new Scanner(System.in).nextLine();
 	}
 
 	@Override
 	public int getInt(String question) {
-		// To be implemented
-		return 8888;
+		System.out.println(question);
+		return Integer.parseInt(new Scanner(System.in).nextLine());
 	}
 
 	@Override
 	public boolean getBoolean(String question) {
-		// To be implemented
-		return true;
+		System.out.println(question);
+		return Boolean.parseBoolean(new Scanner(System.in).nextLine());
 	}
 
 }
+

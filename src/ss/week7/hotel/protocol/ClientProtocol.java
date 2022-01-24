@@ -124,7 +124,7 @@ public interface ClientProtocol {
 	 * ProtocolMessages.EXIT;
 	 * 
 	 * Both the server and the client then close the connection. The client does
-	 * this using the {@link #closeConnection()} method.
+	 * this using the {link closeConnection()} method.
 	 * 
 	 * @throws ServerUnavailableException if IO errors occur.
 	 */
