@@ -1,6 +1,6 @@
 # module-2
 
-### Project created for pupose of learning java aas a part of my univeristy course
+### Project created for pupose of learning java as a part of my univeristy course
 
 Application consist of:
 -  simple hotel application developing further through weeks
