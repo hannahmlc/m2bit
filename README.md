@@ -1,7 +1,8 @@
 # module-2
 
-### Project created for pupose of learning java as a part of my univeristy course
+### This project was created as part of my university course to learn Java.
 
-Application consist of:
--  simple hotel application developing further through weeks
--  creating solutions for simple tasks to learn java and how to create tests in junit
+The project consists of:
+ - Basic hotel room management system
+ - Tictactoe game
+- Creating solutions for simple tasks to learn Java, OOP and Junit
